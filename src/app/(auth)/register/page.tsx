@@ -1,15 +1,18 @@
 "use client"
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuthStore } from "@/store/Auth";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 function RegisterPage() {
     const {createAccount, login} = useAuthStore()
     const [isLoading, setIsLoading] = React.useState(false)
     const [error, setError] = React.useState("")
+    const router = useRouter()
 
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -43,6 +46,8 @@ function RegisterPage() {
             const loginResponse = await login(email.toString(), password.toString())
             if(loginResponse.error) {
                 setError(() => loginResponse.error!.message)
+            } else {
+                router.push("/login")
             }
         }
 

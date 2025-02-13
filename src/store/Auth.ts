@@ -59,9 +59,15 @@ export const useAuthStore = create<IAuthStore>()(
             async verifySession() {
                 try {
                     const session = await account.getSession("current")
-                    set({session})
+                    // if user deleted manually from backend
+                    const user = await account.get<UserPrefs>();
+
+                    set({ session,user })
                 } catch (error) {
                     console.log(error);
+
+                    // if user is deleted from appwrite manually, log out and clear session
+                    set({ session: null, jwt: null, user: null })
                     
                 }
             },
