@@ -3,7 +3,7 @@ import {
     commentCollection,
     db,
     questionCollection, 
-    voteCollection,
+    VoteCollection,
     questionAttachmentBucket
 
 } from "@/models/name";
@@ -14,8 +14,8 @@ import Answers from "@/components/Answers";
 import Comments from "@/components/Comments";
 import { MarkdownPreview } from "@/components/RTE";
 import VoteButtons from "@/components/VoteButtons";
-import Particles from "@/components/magicui/shimmer-button";
-import ShimmerButton from "@/components/magicui/shimmer-button"
+import Particles from "@/components/magicui/particles";
+import ShimmerButton from "@/components/magicui/shimmer-button";
 import { avatars } from "@/models/server/config";
 import { storage } from "@/models/server/config";
 import convertDateToRelativeTime from "@/utils/relativeTime";
@@ -41,13 +41,13 @@ const Page = async (
                     Query.orderDesc("$createdAt"),
                     Query.equal("questionId", params.quesId),
                 ]),
-                databases.listDocuments(db, voteCollection, [
+                databases.listDocuments(db, VoteCollection, [
                     Query.equal("typeId", params.quesId),
                     Query.equal("type","question"),
                     Query.equal("voteStatus","upvoted"),
                     Query.limit(1)
                 ]),
-                databases.listDocuments(db, voteCollection, [
+                databases.listDocuments(db, VoteCollection, [
                     Query.equal("typeId", params.quesId),
                     Query.equal("type","question"),
                     Query.equal("voteStatus","downvoted"),
@@ -84,13 +84,13 @@ const Page = async (
                                 Query.equal("type", "answer"),
                                 Query.orderDesc("$createdAt"),
                             ]),
-                            databases.listDocuments(db, voteCollection, [
+                            databases.listDocuments(db, VoteCollection, [
                                 Query.equal("typeId", answer.$id),
                                 Query.equal("type", "answer"),
                                 Query.equal("voteStatus", "upvoted"),
                                 Query.limit(1), // for optimization
                             ]),
-                            databases.listDocuments(db, voteCollection, [
+                            databases.listDocuments(db, VoteCollection, [
                                 Query.equal("typeId", answer.$id),
                                 Query.equal("type", "answer"),
                                 Query.equal("voteStatus", "downvoted"),

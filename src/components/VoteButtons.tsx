@@ -1,7 +1,7 @@
 "use client";
 
 import { databases } from "@/models/client/config";
-import { db, voteCollection } from "@/models/name";
+import { db, VoteCollection } from "@/models/name";
 import { useAuthStore } from "@/store/Auth";
 import { cn } from "@/lib/utils";
 import { IconCaretUpFilled, IconCaretDownFilled } from "@tabler/icons-react";
@@ -31,7 +31,7 @@ const VoteButtons = ({
     React.useEffect(() => {
         (async () => {
             if (user) {
-                const response = await databases.listDocuments(db, voteCollection, [
+                const response = await databases.listDocuments(db, VoteCollection, [
                     Query.equal("type", type),
                     Query.equal("typeId", id),
                     Query.equal("votedById", user.$id),

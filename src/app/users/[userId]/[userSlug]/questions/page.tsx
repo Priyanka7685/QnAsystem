@@ -1,6 +1,6 @@
 import Pagination from "@/components/Pagination";
 import QuestionCard from "@/components/QuestionCard";
-import { answerCollection, db, questionCollection, voteCollection } from "@/models/name";
+import { answerCollection, db, questionCollection, VoteCollection } from "@/models/name";
 import { databases, users } from "@/models/server/config";
 import { UserPrefs } from "@/store/Auth";
 import { Query } from "node-appwrite";
@@ -32,7 +32,7 @@ const Page = async ({
                     Query.equal("questionId", ques.$id),
                     Query.limit(1), // for optimization
                 ]),
-                databases.listDocuments(db, voteCollection, [
+                databases.listDocuments(db, VoteCollection, [
                     Query.equal("type", "question"),
                     Query.equal("typeId", ques.$id),
                     Query.limit(1), // for optimization

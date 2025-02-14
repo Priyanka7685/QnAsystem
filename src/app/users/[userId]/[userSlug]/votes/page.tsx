@@ -1,5 +1,5 @@
 import Pagination from "@/components/Pagination";
-import { answerCollection, db, questionCollection, voteCollection } from "@/models/name";
+import { answerCollection, db, questionCollection, VoteCollection } from "@/models/name";
 import { databases } from "@/models/server/config";
 import convertDateToRelativeTime from "@/utils/relativeTime";
 import slugify from "@/utils/slugify";
@@ -25,7 +25,7 @@ const Page = async ({
 
     if (searchParams.voteStatus) query.push(Query.equal("voteStatus", searchParams.voteStatus));
 
-    const votes = await databases.listDocuments(db, voteCollection, query);
+    const votes = await databases.listDocuments(db, VoteCollection, query);
 
     votes.documents = await Promise.all(
         votes.documents.map(async vote => {

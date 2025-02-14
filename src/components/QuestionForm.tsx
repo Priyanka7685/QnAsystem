@@ -52,6 +52,7 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
         tags: new Set((question?.tags || []) as string[]),
         attachment: null as File | null,
     });
+    console.log("User ID:", user?.$id); // ✅ Check if user ID exists
 
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState("");
@@ -89,11 +90,13 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
     const create = async () => {
         if (!formData.attachment) throw new Error("Please upload an image");
 
+        console.log("Uploading attachment:", formData.attachment);
         const storageResponse = await storage.createFile(
             questionAttachmentBucket,
             ID.unique(),
             formData.attachment
         );
+        console.log("File uploaded:", storageResponse);
 
         const response = await databases.createDocument(db, questionCollection, ID.unique(), {
             title: formData.title,
@@ -105,6 +108,7 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
 
         loadConfetti();
 
+        console.log("Question created successfully:", response);
         return response;
     };
 
@@ -139,9 +143,15 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
     const submit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log("Submit function is running");
+        console.log("🔍 Title:", formData.title);
+    console.log("🔍 Content:", formData.content);
+    console.log("🔍 Author ID:", formData.authorId);
+
         // didn't check for attachment because it's optional in updating
         if (!formData.title || !formData.content || !formData.authorId) {
             setError(() => "Please fill out all fields");
+            console.log("Form validation failed:", formData);
             return;
         }
 
@@ -289,11 +299,11 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
                 </div>
             </LabelInputContainer>
             <button
-                className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
+                className="relative z-10 inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
                 type="submit"
                 disabled={loading}
             >
-                {question ? "Update" : "Publish"}
+                {loading? "Submitting.." : question ? "Update" : "Publish"}
             </button>
         </form>
     );

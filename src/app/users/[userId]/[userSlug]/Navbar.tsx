@@ -16,6 +16,7 @@ const Navbar = () => {
         {
             name: "Questions",
             href: `/users/${userId}/${userSlug}/questions`,
+            
         },
         {
             name: "Answers",
@@ -28,7 +29,7 @@ const Navbar = () => {
     ];
 
     return (
-        <ul className="flex w-full shrink-0 gap-1 overflow-auto sm:w-40 sm:flex-col">
+        <ul className="relative z-10 flex w-full shrink-0 gap-1 overflow-auto sm:w-40 sm:flex-col">
             {items.map(item => (
                 <li key={item.name}>
                     <Link
