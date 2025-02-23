@@ -7,7 +7,7 @@ interface MousePosition {
     y: number;
 }
 
-function MousePosition(): MousePosition {
+function useMousePosition(): MousePosition {
     const [mousePosition, setMousePosition] = useState<MousePosition>({
         x: 0,
         y: 0,
@@ -47,6 +47,7 @@ function hexToRgb(hex: string): number[] {
     const blue = hexInt & 255;
     return [red, green, blue];
 }
+const canvasId = "particles-canvas"
 
 const Particles: React.FC<ParticlesProps> = ({
     className = "",
@@ -63,10 +64,18 @@ const Particles: React.FC<ParticlesProps> = ({
     const canvasContainerRef = useRef<HTMLDivElement>(null);
     const context = useRef<CanvasRenderingContext2D | null>(null);
     const circles = useRef<any[]>([]);
-    const mousePosition = MousePosition();
+    const mousePosition = useMousePosition();
     const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-    const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+    // const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+    const [dpr, setDpr] = useState(1);
+
+    useEffect(() => {
+        if(typeof window !== "undefined") {
+        setDpr(window.devicePixelRatio)
+        }
+    },[])
+
 
     useEffect(() => {
         if (canvasRef.current) {

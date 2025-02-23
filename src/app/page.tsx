@@ -1,4 +1,7 @@
 import Image from "next/image";
+import TopContributers from "./components/TopContributers";
+import HeroSectionHeader from "./components/HeroSectionHeader";
+
 
 export default function Home() {
   return (
@@ -12,13 +15,13 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-           
           </a>
         </div>
+       
       </div>
-
-
+        <HeroSectionHeader/>
       
     </main>
   );
 }
+

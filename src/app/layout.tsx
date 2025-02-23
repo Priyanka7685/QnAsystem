@@ -9,6 +9,7 @@ import HeroSection from "./components/HeroSection";
 import LatestQuestions from "./components/LatestQuestions";
 import TopContributers from "./components/TopContributers";
 
+
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,16 +21,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en" className="dark">
       <body className={cn(inter.className, "dark:bg-black dark:text-white")}>
         <Header />
         <HeroSectionHeader />
         <LatestQuestions />
-        {children}
-        {/* <TopContributers/> */}
+        {children}  
         <Footer />
         </body>
     </html>
   );
 }
+
+
+

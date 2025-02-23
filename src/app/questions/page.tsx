@@ -11,7 +11,7 @@ import Search from "./Search";
 
 // To search questions page
 const Page = async ({
-    searchParams,
+    searchParams = {},
 }: {
     searchParams: { page?: string; tag?: string; search?: string };
 }) => {

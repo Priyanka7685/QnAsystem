@@ -1,10 +1,13 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const BackgroundBeams = React.memo(({ className }: { className?: string }) => {
-    const paths = [
+    const [paths, setPaths] = useState<string[]>([]);
+
+    useEffect(() => {
+        setPaths([
         "M-380 -189C-380 -189 -312 216 152 343C616 470 684 875 684 875",
         "M-373 -197C-373 -197 -305 208 159 335C623 462 691 867 691 867",
         "M-366 -205C-366 -205 -298 200 166 327C630 454 698 859 698 859",
@@ -55,7 +58,8 @@ export const BackgroundBeams = React.memo(({ className }: { className?: string }
         "M-51 -565C-51 -565 17 -160 481 -33C945 94 1013 499 1013 499",
         "M-44 -573C-44 -573 24 -168 488 -41C952 86 1020 491 1020 491",
         "M-37 -581C-37 -581 31 -176 495 -49C959 78 1027 483 1027 483",
-    ];
+    ]);
+}, []);
     return (
         <div
             className={cn(

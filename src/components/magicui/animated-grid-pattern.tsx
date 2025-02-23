@@ -2,7 +2,7 @@
 
 import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 interface GridPatternProps {
     width?: number;
@@ -30,7 +30,7 @@ export function GridPattern({
     repeatDelay = 0.5,
     ...props
 }: GridPatternProps) {
-    const id = useId();
+    const id = useId()
     const containerRef = useRef(null);
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [squares, setSquares] = useState(() => generateSquares(numSquares));
