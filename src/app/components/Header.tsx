@@ -19,8 +19,13 @@ export default function Header() {
             link: "/questions",
             icon: <IconWorldQuestion className="h-4 w-4 text-neutral-500 dark:text-white" />,
         },
+        // {
+        //     name: "Login",
+        //     link: "/register",
+        //     icon: <IconWorldQuestion className="h-4 w-4 text-neutral-500 dark:text-white" />,
+        // },
     ];
-
+ 
     if (user)
         navItems.push({
             name: "Profile",
