@@ -21,8 +21,6 @@ import React from "react";
 import DeleteQuestion from "./DeleteQuestion";
 import EditQuestion from "./EditQuestion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
-import { type Metadata } from "next";
-
 
 interface PageProps {
   params: {
