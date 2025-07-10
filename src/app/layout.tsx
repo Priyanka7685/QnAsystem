@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSectionHeader from "./components/HeroSectionHeader";
 import LatestQuestions from "./components/LatestQuestions";
-import TopContributers from "./components/TopContributers";
 
 
 const inter = Inter({ subsets: ["latin"] });
