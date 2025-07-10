@@ -2,9 +2,7 @@
 
 import IconCloud from "@/components/magicui/icon-cloud";
 import Particles from "@/components/magicui/particles";
-import ShimmerButton from "@/components/magicui/shimmer-button";
-import { useAuthStore } from "@/store/Auth";
-import Link from "next/link";
+// import { useAuthStore } from "@/store/Auth";
 import React from "react";
 
 const slugs = [
@@ -41,7 +39,7 @@ const slugs = [
 ];
 
 const HeroSectionHeader = () => {
-    const { session } = useAuthStore();
+    // const { session } = useAuthStore();
 
     return (
         <div className="container mx-auto px-4">

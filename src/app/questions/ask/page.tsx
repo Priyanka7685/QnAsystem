@@ -1,4 +1,3 @@
-import QuestionCard from "@/components/QuestionCard";
 import QuestionForm from "@/components/QuestionForm";
 
 

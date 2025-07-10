@@ -31,7 +31,7 @@ function useMousePosition(): MousePosition {
 
 interface MagicContainerProps {
     children?: ReactNode;
-    className?: any;
+    className?: string;
 }
 
 const MagicContainer = ({ children, className }: MagicContainerProps) => {
@@ -163,7 +163,7 @@ interface MagicCardProps {
      * */
     background?: string;
 
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 const MagicCard: React.FC<MagicCardProps> = ({
@@ -186,7 +186,9 @@ const MagicCard: React.FC<MagicCardProps> = ({
             className={cn(
                 "relative z-0 h-full w-full rounded-2xl p-6",
                 "bg-gray-300 dark:bg-gray-700",
+                spotlight &&
                 "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--border-color),transparent_100%)]",
+                isolated && "isolate",
                 className
             )}
             {...props}

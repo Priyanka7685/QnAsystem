@@ -47,7 +47,7 @@ function hexToRgb(hex: string): number[] {
     const blue = hexInt & 255;
     return [red, green, blue];
 }
-const canvasId = "particles-canvas"
+// const canvasId = "particles-canvas"
 
 const Particles: React.FC<ParticlesProps> = ({
     className = "",
@@ -63,7 +63,7 @@ const Particles: React.FC<ParticlesProps> = ({
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasContainerRef = useRef<HTMLDivElement>(null);
     const context = useRef<CanvasRenderingContext2D | null>(null);
-    const circles = useRef<any[]>([]);
+    const circles = useRef<Circle[]>([]);
     const mousePosition = useMousePosition();
     const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
     const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });

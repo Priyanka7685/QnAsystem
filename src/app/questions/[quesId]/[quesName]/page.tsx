@@ -4,7 +4,6 @@ import {
     db,
     questionCollection, 
     VoteCollection,
-    questionAttachmentBucket
 
 } from "@/models/name";
 import { databases, users } from "@/models/server/config";
@@ -15,12 +14,8 @@ import Comments from "@/components/Comments";
 import { MarkdownPreview } from "@/components/RTE";
 import VoteButtons from "@/components/VoteButtons";
 import Particles from "@/components/magicui/particles";
-import ShimmerButton from "@/components/magicui/shimmer-button";
-import { avatars } from "@/models/server/config";
-import { storage } from "@/models/server/config";
 import convertDateToRelativeTime from "@/utils/relativeTime";
 import slugify from "@/utils/slugify";
-import { IconEdit } from "@tabler/icons-react";
 import Link from "next/link";
 import React from "react";
 import DeleteQuestion from "./DeleteQuestion";

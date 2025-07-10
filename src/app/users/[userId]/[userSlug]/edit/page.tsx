@@ -1,6 +1,6 @@
 "use client"
 import { Input } from "@/components/ui/input";
-import { useAuthStore } from "@/store/Auth";
+// import { useAuthStore } from "@/store/Auth";
 import { Label } from "@radix-ui/react-label";
 import { account } from "@/models/client/config";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,7 @@ import React, { FormEvent, useState } from "react";
 
 const Page = () => {
 
-    const { user } = useAuthStore();
+    // const { user } = useAuthStore();
     const router = useRouter();
 
     const[firstname, setFirstname] = useState("");
@@ -34,8 +34,9 @@ const Page = () => {
 
             // redirecting to profile page
             router.push('/')
-        } catch (error: any) {
-            setError(error.message || "Failed to update profile.");
+        } catch (error: unknown) {
+            const err = error as { message?: string};
+            setError(err.message || "Failed to update profile.");
         } finally {
             setLoading(false);
           }
@@ -79,6 +80,10 @@ const Page = () => {
             >
                 {loading ? "Updating..." : "Update->"}
             </button>
+
+            {error && (
+                <p className="text-sm text-red-500 mt-4">{error}</p>
+            )}
 
             <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
 

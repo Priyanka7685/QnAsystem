@@ -1,11 +1,10 @@
 "use client";
 
-import { ID, Models } from "appwrite";
+import { Models } from "appwrite";
 import React from "react";
 import VoteButtons from "./VoteButtons";
 import { useAuthStore } from "@/store/Auth";
-import { avatars, databases } from "@/models/client/config";
-import { answerCollection, db } from "@/models/name";
+import { avatars} from "@/models/client/config";
 import RTE, { MarkdownPreview } from "./RTE";
 import Comments from "./Comments";
 import slugify from "@/utils/slugify";
@@ -55,8 +54,9 @@ const Answers = ({
                     ...prev.documents,
                 ],
             }));
-        } catch (error: any) {
-            window.alert(error?.message || "Error creating answer");
+        } catch (error: unknown) {
+            const err = error as { message?: string};
+            window.alert(err?.message || "Error creating answer");
         }
     };
 
@@ -77,8 +77,9 @@ const Answers = ({
                 total: prev.total - 1,
                 documents: prev.documents.filter(answer => answer.$id !== answerId),
             }));
-        } catch (error: any) {
-            window.alert(error?.message || "Error deleting answer");
+        } catch (error: unknown) {
+            const err = error as { message?: string};
+            window.alert(err?.message || "Error deleting answer");
         }
     };
 

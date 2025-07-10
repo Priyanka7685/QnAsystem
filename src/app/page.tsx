@@ -1,5 +1,3 @@
-import Image from "next/image";
-import TopContributers from "./components/TopContributers";
 import HeroSectionHeader from "./components/HeroSectionHeader";
 
 

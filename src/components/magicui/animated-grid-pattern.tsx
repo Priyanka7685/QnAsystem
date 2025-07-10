@@ -2,14 +2,14 @@
 
 import { cn } from "@/utils/cn";
 import { motion } from "framer-motion";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 interface GridPatternProps {
     width?: number;
     height?: number;
     x?: number;
     y?: number;
-    strokeDasharray?: any;
+    strokeDasharray?: string | number ;
     numSquares?: number;
     className?: string;
     maxOpacity?: number;
@@ -74,7 +74,7 @@ export function GridPattern({
     // Resize observer to update container dimensions
     useEffect(() => {
         const resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
+            for (const entry of entries) {
                 setDimensions({
                     width: entry.contentRect.width,
                     height: entry.contentRect.height,
@@ -130,6 +130,7 @@ export function GridPattern({
                             repeat: 1,
                             delay: index * 0.1,
                             repeatType: "reverse",
+                            repeatDelay
                         }}
                         onAnimationComplete={() => updateSquarePosition(id)}
                         key={`${x}-${y}-${index}`}

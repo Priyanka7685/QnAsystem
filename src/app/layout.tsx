@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSectionHeader from "./components/HeroSectionHeader";
-import HeroSection from "./components/HeroSection";
 import LatestQuestions from "./components/LatestQuestions";
 import TopContributers from "./components/TopContributers";
 

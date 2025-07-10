@@ -162,8 +162,9 @@ const QuestionForm = ({ question }: { question?: Models.Document }) => {
             const response = question ? await update() : await create();
 
             router.push(`/questions/${response.$id}/${slugify(formData.title)}`);
-        } catch (error: any) {
-            setError(() => error.message);
+        } catch (error: unknown) {
+            const err = error as { message?: string };
+            setError(() => err.message || "Something went wrong.");
         }
 
         setLoading(() => false);
