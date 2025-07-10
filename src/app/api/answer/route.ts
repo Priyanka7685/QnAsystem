@@ -26,13 +26,14 @@ export async function POST(request: NextRequest) {
         })
 
         
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const err = error as { message?: string; status?: number; code?: number };
         return NextResponse.json(
             {
-                error: error?.message || "Error creating answer"
+                error: err?.message || "Error creating answer"
             },
             {
-                status: error?.status || error?.code || 500
+                status: err?.status || err?.code || 500
             }
         )
         
@@ -62,13 +63,14 @@ export async function DELETE(request: NextRequest) {
             }
     )
         
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const err = error as { message?: string; status?: number; code?: number };
         return NextResponse.json(
             {
-                error: error?.message || "Error creating answer"
+                error: err?.message || "Error creating answer"
             },
             {
-                status: error?.status || error?.code || 500
+                status: err?.status || err?.code || 500
             }
         )
     }

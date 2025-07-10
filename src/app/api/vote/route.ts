@@ -127,10 +127,11 @@ export async function POST(request: NextRequest) {
                 status: 200,
             }
         );
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const err = error as { message?: string; status?: number; code?: number };
         return NextResponse.json(
-            { message: error?.message || "Error deleting answer" },
-            { status: error?.status || error?.code || 500 }
+            { message: err?.message || "Error deleting answer" },
+            { status: err?.status || err?.code || 500 }
         );
     }
 }

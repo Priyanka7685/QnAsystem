@@ -1,7 +1,7 @@
 "use client";
 import { useAuthStore } from "@/store/Auth"
 import { useRouter } from "next/navigation"
-import React, { useEffect } from "react";
+import React from "react";
 
 const Layout = ({children} : {children: React.ReactNode}) => {
     const {session, hydrated, verifySession} = useAuthStore();
@@ -21,10 +21,6 @@ const Layout = ({children} : {children: React.ReactNode}) => {
         return null
     }
     if (!hydrated) return null; 
-
-    // useEffect(() => {
-    //     verifySession();
-    // },[])
 
     return (
         <div className="" >
