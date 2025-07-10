@@ -170,9 +170,9 @@ const MagicCard: React.FC<MagicCardProps> = ({
     className,
     children,
     size = 600,
-    spotlight = true,
+    // spotlight = true,
     borderColor = "hsl(0 0% 98%)",
-    isolated = true,
+    // isolated = true,
     ...props
 }) => {
     return (
@@ -186,9 +186,7 @@ const MagicCard: React.FC<MagicCardProps> = ({
             className={cn(
                 "relative z-0 h-full w-full rounded-2xl p-6",
                 "bg-gray-300 dark:bg-gray-700",
-                spotlight ?
-                "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--border-color),transparent_100%)]":"",
-                isolated ? "isolate": "",
+                "bg-[radial-gradient(var(--mask-size)_circle_at_var(--mouse-x)_var(--mouse-y),var(--border-color),transparent_100%)]","isolate",
                 className
             )}
             {...props}
