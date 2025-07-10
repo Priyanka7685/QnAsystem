@@ -4,7 +4,7 @@ import getOrCreateDB from './models/server/dbSetup'
 import getOrCreateStorage from './models/server/storageSetup' 
 
 // This function can be marked `async` if using `await` inside
-export async function middleware(_request: NextRequest) {
+export async function middleware() {
 
     await Promise.all([
         getOrCreateDB(),
