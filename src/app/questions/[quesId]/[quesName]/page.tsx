@@ -31,7 +31,11 @@ interface PageProps {
   };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { quesId: string; quesName: string };
+}) {
   return {
     title: decodeURIComponent(params.quesName) + " - RiverFlow",
   };
