@@ -24,11 +24,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam";
 import type { Metadata } from "next";
 
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { quesId: string; quesName: string };
-}): Promise<Metadata>  {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata>  {
   return {
     title: decodeURIComponent(params.quesName) + " - RiverFlow",
   };
