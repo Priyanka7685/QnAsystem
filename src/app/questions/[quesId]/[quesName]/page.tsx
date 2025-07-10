@@ -21,21 +21,23 @@ import React from "react";
 import DeleteQuestion from "./DeleteQuestion";
 import EditQuestion from "./EditQuestion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import type { Metadata } from "next";
 
-interface PageProps {
-  params: {
-    quesId: string;
-    quesName: string;
-  };
-}
 
 export async function generateMetadata({
   params,
 }: {
   params: { quesId: string; quesName: string };
-}) {
+}): Promise<Metadata>  {
   return {
     title: decodeURIComponent(params.quesName) + " - RiverFlow",
+  };
+}
+
+interface PageProps {
+  params: {
+    quesId: string;
+    quesName: string;
   };
 }
 
