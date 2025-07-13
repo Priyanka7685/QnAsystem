@@ -30,7 +30,6 @@ const Page = async (
         params: { quesId: string; quesName: string 
 
         } } ) => {
-            const { quesId, quesName } = params;
             const [question, answers, upvotes, downvotes, comments] = await Promise.all([
                 databases.getDocument(db, questionCollection, params.quesId),
                 databases.listDocuments(db, answerCollection, [
