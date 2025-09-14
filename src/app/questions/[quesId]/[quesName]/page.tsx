@@ -223,7 +223,14 @@ const Page = async (
                         <hr className="my-4 border-white/40" />
                     </div>
                 </div>
-                <Answers answers={answers} questionId={question.$id} />
+                {/* <Answers answers={answers} questionId={question.$id} />
+                 */}
+                 <Answers
+    answers={answers}
+    questionId={question.$id}
+    questionText={question.content} // 👈 pass full question text
+/>
+
             </div>
         </TracingBeam>
             )

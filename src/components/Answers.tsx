@@ -11,16 +11,20 @@ import slugify from "@/utils/slugify";
 import Link from "next/link";
 import { IconTrash } from "@tabler/icons-react";
 
+
 const Answers = ({
     answers: _answers,
     questionId,
+    questionText
 }: {
     answers: Models.DocumentList<Models.Document>;
     questionId: string;
+    questionText: string;   //extra
 }) => {
     const [answers, setAnswers] = React.useState(_answers);
     const [newAnswer, setNewAnswer] = React.useState("");
     const { user } = useAuthStore();
+    const [loadingAI, setLoadingAI] = React.useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -140,6 +144,36 @@ const Answers = ({
             <form onSubmit={handleSubmit} className="space-y-2">
                 <h2 className="mb-4 text-xl">Your Answer</h2>
                 <RTE value={newAnswer} onChange={value => setNewAnswer(() => value || "")} />
+{/* extra */}
+<button
+  type="button"
+  className="ml-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 mr-7"
+  onClick={async () => {
+    if (!questionId) 
+        return
+        setLoadingAI(true);
+    try {
+      const res = await fetch("/api/ai-answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: questionText }), // or pass full question text
+      });
+      const data = await res.json();
+      if (data.aiAnswer) {
+        setNewAnswer(data.aiAnswer); // auto-fill editor with AI draft
+      }
+    } catch (err) {
+      console.error("AI error:", err);
+      window.alert("Could not generate AI answer.");
+    }finally {
+      setLoadingAI(false); // stop loading
+    }
+  }}
+>
+  {loadingAI ? "Generating... ⏳" : "💡 Get AI Suggestion"}
+</button>
+{/* extra */}
+
                 <button className="shrink-0 rounded bg-orange-500 px-4 py-2 font-bold text-white hover:bg-orange-600">
                     Post Your Answer
                 </button>
