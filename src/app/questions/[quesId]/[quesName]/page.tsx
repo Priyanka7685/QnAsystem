@@ -31,10 +31,12 @@ interface PageProps {
 
 const Page = async (
     
-    { params }: PageProps
-        // params: { quesId: string; quesName: string 
-        ) => {
-        // } } ) => {
+    { params }: 
+    { 
+        params: { quesId: string; quesName: string 
+
+        } } ) => {
+
             const [question, answers, upvotes, downvotes, comments] = await Promise.all([
                 databases.getDocument(db, questionCollection, params.quesId),
                 databases.listDocuments(db, answerCollection, [
